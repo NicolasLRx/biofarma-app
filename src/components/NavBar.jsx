@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from 'react-router-dom';
 import CartWidget from "./CartWidget";
 import {
   Menu,
@@ -14,6 +15,7 @@ import {
 const NavBar = () => {
   return (
     <div>
+       <Link to="/App.jsx">Home</Link>
       <Flex>
        <Box p="4">
             <Menu>
