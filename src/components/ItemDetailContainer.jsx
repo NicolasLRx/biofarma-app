@@ -1,10 +1,9 @@
-import React from "react";
-import { Card, CardHeader, CardBody } from "@chakra-ui/react";
-import { useParams } from "react-router-dom";
-import ItemList from './ItemList';
+import React from 'react'
+import ItemDetail from './ItemDetail'
 
-const ItemListContainer = () => {
-  const { linea } = useParams()
+
+const ItemDetailContainer = () => {
+
   const productos = [
     {id: 1 , descripcion: "MicFull Iniciador", precio: 30, linea:"avicola"  },
     {id: 2 , descripcion: "MicFull Terminador", precio: 23, linea:"avicola"   },
@@ -18,7 +17,7 @@ const ItemListContainer = () => {
 
 
   ]
-  const mostrarLinea = new Promise ((resolve, reject) => {
+  const seleccionarProducto = new Promise ((resolve, reject) => {
 
     if(productos.length > 0){
       setTimeout(()=>{
@@ -27,28 +26,24 @@ const ItemListContainer = () => {
     } else {
       reject(new Error ("No se encontraron productos")) 
 }
-  })
-
-  mostrarLinea 
-  .then((res)=>{
-  })
-  .catch((error)=>{
-    console.log(error)
-  })
 
 
-  const prodLinea = productos.filter((producto) => producto.linea === linea)
+seleccionarProducto 
+.then((res)=>{
+})
+.catch((error)=>{
+  console.log(error)
+})
+  }  )
 
 
   return (
     <div>
-
-        <ItemList
-        productos = {prodLinea}
-        />
-    
+      <ItemDetail
+      productos={productos }      
+      />
     </div>
-  );
-};
+  )
+}
 
-export default ItemListContainer;
+export default ItemDetailContainer
