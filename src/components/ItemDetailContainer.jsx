@@ -1,49 +1,38 @@
-import React from 'react'
+import React, {useEffect, useState} from "react";
 import ItemDetail from './ItemDetail'
+import { useParams } from "react-router-dom";
+import { seleccionarProducto } from "../data/asyncMock";
 
 
 const ItemDetailContainer = () => {
 
-  const productos = [
-    {id: 1 , descripcion: "MicFull Iniciador", precio: 30, linea:"avicola"  },
-    {id: 2 , descripcion: "MicFull Terminador", precio: 23, linea:"avicola"   },
-    {id: 3 , descripcion: "MicFull Ultima Semana" , precio: 15, linea:"avicola"   },
-    {id: 4 , descripcion: "Perfectos" , precio: 12, linea: "cerdos" },
-    {id: 5 , descripcion: "Micromix Macro MAx", precio: 15, linea: "cerdos" },
-    {id: 6 , descripcion: "Derby Entrenamiento", precio: 9, linea: "equinos" },
-    {id: 7 , descripcion: "Derby Fibra Sport" , precio: 10, linea: "equinos" },
-    {id: 8 , descripcion: "Macro corrector" , precio: 7, linea:  "rumiantes"},
-    {id: 9 , descripcion: "Concentrado Novillo" , precio: 9, linea:  "rumiantes"},
+  const [productos, setProductos] = useState({})
+  const { id } = useParams()
+  console.log(id)
 
+  useEffect(() => {
 
-  ]
-  const seleccionarProducto = new Promise ((resolve, reject) => {
+    seleccionarProducto(id)
+    .then((res) => {
 
-    if(productos.length > 0){
-      setTimeout(()=>{
-      resolve(productos)
-     }, 3000)
-    } else {
-      reject(new Error ("No se encontraron productos")) 
-}
+      console.log(res)
+      setProductos(res)
 
-
-seleccionarProducto 
-.then((res)=>{
-})
-.catch((error)=>{
-  console.log(error)
-})
-  }  )
-
-
+    })
+    .catch((error)=>{
+      console.log(error)
+    })
+  }, {id})
+  console.log(productos)
+  
   return (
     <div>
-      <ItemDetail
-      productos={productos }      
-      />
+
+        <ItemDetail productos = {productos}
+        />
+    
     </div>
-  )
-}
+  );
+};
 
 export default ItemDetailContainer

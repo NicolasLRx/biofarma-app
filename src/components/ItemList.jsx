@@ -1,5 +1,6 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
+import { Link } from 'react-router-dom';
 
 const ItemList = ({ productos }) => {
   return (
@@ -9,6 +10,7 @@ const ItemList = ({ productos }) => {
           <Text fontWeight="bold">{producto.descripcion}</Text>
           <Text>Precio: ${producto.precio}</Text>
           <Text>Línea: {producto.linea}</Text>
+          <Link to ={`/item/${producto.id}`}>Ver detalle</Link>
         </Box>
       ))}
     </Box>
