@@ -22,7 +22,8 @@ const ItemDetailContainer = () => {
     .catch((error)=>{
       console.log(error)
     })
-  }, {id})
+  }, [id]
+  )
   console.log(productos)
   
   return (
