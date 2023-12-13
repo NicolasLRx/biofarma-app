@@ -6,7 +6,8 @@ const ItemDetail = ({ productos }) => {
   return (
     <div>
       <Box borderWidth="1px" borderRadius="lg" p="4" mb="4">
-        <Text fontWeight="bold">{productos.descripcion}</Text>
+        <Text fontWeight="bold">{productos.nombre}</Text>
+        <Text>{productos.descripcion}</Text>
         <Text>Precio: ${productos.precio}</Text>
         <Text>Línea: {productos.linea}</Text>
         <ItemCount />

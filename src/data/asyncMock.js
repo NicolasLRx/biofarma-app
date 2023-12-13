@@ -3,7 +3,7 @@ const productos = [
     {id: 2 , descripcion: "MicFull Terminador", precio: 23, linea:"avicola"   },
     {id: 3 , descripcion: "MicFull Ultima Semana" , precio: 15, linea:"avicola"   },
     {id: 4 , descripcion: "Perfectos" , precio: 12, linea: "cerdos" },
-    {id: 5 , descripcion: "Micromix Macro MAx", precio: 15, linea: "cerdos" },
+    {id: 5 , descripcion: "Micromix Macro Max", precio: 15, linea: "cerdos" },
     {id: 6 , descripcion: "Derby Entrenamiento", precio: 9, linea: "equinos" },
     {id: 7 , descripcion: "Derby Fibra Sport" , precio: 10, linea: "equinos" },
     {id: 8 , descripcion: "Macro corrector" , precio: 7, linea:  "rumiantes"},

@@ -1,37 +1,39 @@
-import React, {useEffect, useState} from "react";
-import { Card, CardHeader, CardBody } from "@chakra-ui/react";
+import React, { useEffect, useState } from "react";
+import { Box, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
-import ItemList from './ItemList';
+import ItemList from "./ItemList";
+import { getDocs, collection, where, getFirestore, query } from "firebase/firestore";
 import { mostrarLinea } from "../data/asyncMock";
 
 const ItemListContainer = () => {
-  
-  const [productos, setProductos] = useState([])
-  const { linea } = useParams()
-  console.log(linea)
+  const { linea } = useParams();
+  const [productos, setProductos] = useState([]);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const db = getFirestore();
+        const q = query(collection(db, "productos"), where("linea", "==", linea));
+        const snapshot = await getDocs(q);
 
-    mostrarLinea(linea)
-    .then((res) => {
+        const data = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
 
-      console.log(res)
-      setProductos(res)
+        setProductos(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
 
-    })
-    .catch((error)=>{
-      console.log(error)
-    })
-  }, [linea])
-  console.log(productos)
-  
+    fetchData();
+  }, [linea]);
+
   return (
-    <div>
-
-        <ItemList productos = {productos}
-        />
-    
-    </div>
+    <Box>
+      <ItemList productos={productos} />
+    </Box>
   );
 };
 
