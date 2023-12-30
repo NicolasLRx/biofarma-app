@@ -1,20 +1,41 @@
 import React from "react";
-import { Box, Text, Image } from "@chakra-ui/react";
-import { Link } from 'react-router-dom';
+import {
+  Box,
+  Text,
+  Image,
+  Heading,
+  Divider,
+  SimpleGrid,
+} from "@chakra-ui/react";
+import { Link } from "react-router-dom";
+import { Card, CardBody, CardFooter, Stack } from "@chakra-ui/react";
 
 const ItemList = ({ productos }) => {
   return (
     <Box>
-      {
-        productos.map((producto) => (
-          <Box key={producto.id} borderWidth="1px" borderRadius="lg" p="4" mb="4">
-            
-            <h1>{producto.nombre}</h1>
-            <Image src= {producto.imagen} maxWidth={"300px"}></Image>
-            <Link to={`/item/${producto.id}`}>Ver detalle</Link>
-          </Box>
-        ))
-      }
+      <SimpleGrid
+        spacing={4}
+        templateColumns="repeat(auto-fill, minmax(200px, 1fr))"
+      >
+        {productos.map((producto) => (
+          <Card maxW="sm" key={producto.id} boxShadow="lg">
+            <CardBody>
+              <Image
+                src={producto.imagen}
+                alt={producto.descripcion}
+                borderRadius="lg"
+              />
+              <Stack mt="6" spacing="3">
+                <Heading size="md">{producto.nombre}</Heading>
+              </Stack>
+            </CardBody>
+            <Divider />
+            <CardFooter>
+              <Link to={`/item/${producto.id}`}>Ver detalle</Link>
+            </CardFooter>
+          </Card>
+        ))}
+      </SimpleGrid>
     </Box>
   );
 };

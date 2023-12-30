@@ -2,8 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Box, Text } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import { getDocs, collection, where, getFirestore, query } from "firebase/firestore";
-import { mostrarLinea } from "../data/asyncMock";
+import {
+  getDocs,
+  collection,
+  where,
+  getFirestore,
+  query,
+} from "firebase/firestore";
+import { db } from "../firebase/config";
 
 const ItemListContainer = () => {
   const { linea } = useParams();
@@ -12,8 +18,10 @@ const ItemListContainer = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const db = getFirestore();
-        const q = query(collection(db, "productos"), where("linea", "==", linea));
+        const q = query(
+          collection(db, "productos"),
+          where("linea", "==", linea)
+        );
         const snapshot = await getDocs(q);
 
         const data = snapshot.docs.map((doc) => ({

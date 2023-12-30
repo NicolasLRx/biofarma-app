@@ -1,7 +1,7 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import { ChakraProvider } from '@chakra-ui/react'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { ChakraProvider } from "@chakra-ui/react";
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
@@ -15,17 +15,16 @@ const firebaseConfig = {
   projectId: "biofarma-app",
   storageBucket: "biofarma-app.appspot.com",
   messagingSenderId: "29594685415",
-  appId: "1:29594685415:web:0bb034dbfc952f7401b742"
+  appId: "1:29594685415:web:0bb034dbfc952f7401b742",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 
-ReactDOM.createRoot(document.getElementById('root')).render(
-  
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ChakraProvider>
-    <App />
+      <App />
     </ChakraProvider>
-  </React.StrictMode>,
-)
+  </React.StrictMode>
+);
